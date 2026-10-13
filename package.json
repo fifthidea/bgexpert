@@ -1,0 +1,18 @@
+{
+  "name": "blood-gas-expert",
+  "version": "2.0.0",
+  "description": "دستیار هوشمند تحلیل گازهای خون (ABG/VBG) — تحلیل اسید-باز، آنالیز متابولیک و پیشنهاد تنظیمات ونتیلاتور",
+  "private": true,
+  "scripts": {
+    "build": "node build/bundle.mjs",
+    "test": "node build/bundle.mjs && node tests/medical-logic.test.js && node tests/integration-check.js && node tests/vent-scenario.js && node tests/click-flow.js && node tests/i18n.test.js && node tests/bundle.smoke.mjs",
+    "test:logic": "node tests/medical-logic.test.js",
+    "test:integration": "node tests/integration-check.js",
+    "test:ventilator": "node tests/vent-scenario.js",
+    "test:click": "node tests/click-flow.js",
+    "test:i18n": "node tests/i18n.test.js",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": ["ABG", "VBG", "blood-gas", "acid-base", "ventilator", "medical", "clinical"],
+  "license": "UNLICENSED"
+}

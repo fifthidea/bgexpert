@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#004d99">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Blood Gas Expert</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-content">
+        <button class="hamburger-menu" id="hamburger-btn" onclick="openNav()" aria-label="منو">
+            <img src="images/menu.png" class="menu-icon-img" alt="Menu">
+        </button>
+
+        <div class="nav-title">
+            <img src="images/logo.png" class="nav-logo-img" alt="Logo">
+        </div>
+
+        <div class="nav-left-container">
+            <button class="nav-back-btn" id="nav-back-btn" style="display: none;" aria-label="بازگشت">
+                <img src="images/back-icon.png" alt="بازگشت" class="nav-icon-img">
+            </button>
+            <!-- دکمهٔ تغییر زبان - در نوار بالا، روبروی منوی همبرگری. فقط در صفحهٔ اول دیده می‌شود. -->
+            <button type="button" id="lang-toggle-btn" class="lang-toggle-btn" data-i18n-aria="header.langAria" aria-label="Change language">
+                <i class="fas fa-globe"></i>
+                <span id="lang-toggle-label" data-i18n="header.lang">EN</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<aside class="sidenav" id="sidenav">
+    <div class="sidenav-header">
+        <h2 data-i18n="menu.title">منو</h2>
+        <button class="close-btn" id="close-sidenav-btn" onclick="closeNav()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <ul class="sidenav-links">
+        <li>
+            <a href="#" id="about-us-link">
+                <img src="images/about.png" alt="درباره ما" class="sidenav-icon">
+                <span data-i18n="menu.about">درباره ما</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+<div id="overlay" class="overlay"></div>
+
+<div id="about-us-modal" class="modal">
+    <div class="modal-content native-modal">
+        <div class="modal-drag-handle"></div>
+        <button class="native-close-btn" onclick="document.getElementById('about-us-modal').classList.remove('open')">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="modal-header-native">
+            <h2 data-i18n="about.title">درباره برنامه</h2>
+            <span class="app-version" data-i18n="about.version">نسخه 2.0.0</span>
+        </div>
+
+        <div class="modal-body-scrollable">
+            <p class="native-text" data-i18n="about.intro">این اپلیکیشن یک ابزار هوشمند بالینی برای تحلیل پیشرفته گازهای خون (ABG/VBG) است که اختلالات پیچیده اسید-باز و وضعیت اکسیژناسیون بیمار را با دقت بالا ارزیابی می‌کند. همچنین بر اساس داده‌های بیمار، پیشنهادات تخصصی برای تنظیمات ونتیلاتور و استراتژی‌های محافظت از ریه ارائه می‌کند.</p>
+
+            <h4 class="section-title-native" style="color: var(--danger-color);"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="about.disclaimerTitle">سلب مسئولیت پزشکی</span></h4>
+            <p class="native-text" style="background-color: rgba(220, 53, 69, 0.05); border-color: rgba(220, 53, 69, 0.2); color: #d32f2f; font-size: 0.8rem; font-weight: 500;">
+                این اپلیکیشن صرفاً یک ابزار کمک‌بالینی و محاسباتی است و <strong>به هیچ وجه</strong> جایگزین قضاوت بالینی، تشخیص و دستورات قطعی پزشک معالج نمی‌باشد. تصمیم‌گیری نهایی در خصوص روند درمان بیمار، منحصراً بر عهده پزشک متخصص است.
+            </p>
+
+            <h4 class="section-title-native" data-i18n="about.teamTitle">تیم توسعه و نظارت</h4>
+            <div class="team-section">
+                <div class="team-member-card">
+                    <div class="member-avatar doctor-bg"><i class="fas fa-user-md"></i></div>
+                    <div class="member-info">
+                        <h4 data-i18n="about.supervisor">دکتر امیر سالاری</h4>
+                        <p data-i18n="about.supervisorRole">ناظر علمی (مدرس اورژانس و مراقبت‌های ویژه)</p>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-avatar dev-bg"><i class="fas fa-code"></i></div>
+                    <div class="member-info">
+                        <h4 data-i18n="about.developer">توکل پیری</h4>
+                        <p data-i18n="about.developerRole">طراحی و توسعه (پرستار بیمارستان امام خمینی)</p>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="section-title-native" data-i18n="about.contactTitle">ارتباط با ما</h4>
+            <div class="native-contact-list">
+                <div class="native-contact-item">
+                    <div class="contact-name" data-i18n="about.drSalari">دکتر سالاری</div>
+                    <div class="contact-actions">
+                        <a href="whatsapp://send?phone=+989124065510" target="_blank" class="action-icon wa-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="instagram://user?username=amirsalari2136" target="_blank" class="action-icon ig-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="native-contact-item">
+                    <div class="contact-name" data-i18n="about.developer">توکل پیری</div>
+                    <div class="contact-actions">
+                        <a href="whatsapp://send?phone=+989905415680" target="_blank" class="action-icon wa-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="instagram://user?username=medmate_ir" target="_blank" class="action-icon ig-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="start-screen" class="splash-screen">
+    <h1 data-i18n="splash.title">اپلیکیشن هوشمند تحلیل پیشرفته گازهای خون (ABG/VBG)</h1>
+    <p data-i18n="splash.subtitle">لطفاً نوع نمونه خون را انتخاب کنید</p>
+
+    <div id="sample-type-group-splash">
+        <div class="radio-card-group abg-card" data-type="abg">
+            <div class="premium-lock-badge"><i class="fas fa-lock"></i></div>
+            <img src="images/abg-icon.png" alt="شریانی" class="sample-type-icon-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="sample-type-icon-lg abg-icon-lg" style="display: none;"><i class="fas fa-heart-pulse"></i></div>
+            <span data-i18n="sample.abg">نمونه خون شریانی (ABG)</span>
+            <span class="premium-label-text" data-i18n="premium.label">ویژه نسخه حرفه‌ای</span>
+        </div>
+        <div class="radio-card-group vbg-card" data-type="vbg">
+            <img src="images/vbg-icon.png" alt="وریدی" class="sample-type-icon-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="sample-type-icon-lg vbg-icon-lg" style="display: none;"><i class="fas fa-droplet"></i></div>
+            <span data-i18n="sample.vbg">نمونه خون وریدی (VBG)</span>
+            <span class="free-label-text" data-i18n="free.label">۱ بار تست رایگان</span>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="main-app-content" style="display: none;">
+    <div class="main-grid">
+        <div id="left-column">
+
+            <div class="form-row grid-desktop-2" id="sample-type-group" style="display: none;">
+                <div class="radio-card-group">
+                    <input type="radio" id="sample-abg" name="sampleType" value="abg" checked>
+                    <label for="sample-abg"><span> ABG </span></label>
+                </div>
+                <div class="radio-card-group">
+                    <input type="radio" id="sample-vbg" name="sampleType" value="vbg">
+                    <label for="sample-vbg"><span> VBG </span></label>
+                </div>
+            </div>
+
+            <div class="card" id="patient-info-card">
+                <div class="card-header">
+                    <img src="images/user.png" alt="بیمار" class="card-icon">
+                    <span data-i18n="card.patient">اطلاعات بیمار</span>
+                </div>
+                <div class="card-body">
+                    <div class="form-row compact-row" id="patient-demographics">
+                        <div class="form-group ultra-compact">
+                            <label for="age" class="compact-label" data-i18n="lbl.age">سن</label>
+                            <div class="input-with-unit compact-input">
+                                <input type="number" id="age" min="0" max="150" placeholder="40" class="compact-field">
+                                <span class="unit-badge compact-badge" data-i18n="unit.year">سال</span>
+                            </div>
+                            <div class="error-message" id="age-error"></div>
+                        </div>
+
+                        <div class="form-group ultra-compact">
+                            <label for="height" class="compact-label" data-i18n="lbl.height">قد</label>
+                            <div class="input-with-unit compact-input">
+                                <input type="number" id="height" min="100" max="250" placeholder="170" inputmode="numeric" class="compact-field">
+                                <span class="unit-badge compact-badge">cm</span>
+                            </div>
+                            <div class="error-message" id="height-error"></div>
+                        </div>
+
+                        <div class="form-group ultra-compact">
+                            <label class="compact-label" data-i18n="lbl.gender">جنسیت</label>
+                            <div class="compact-input">
+                                <input type="hidden" id="gender" value="">
+                                <div class="gender-toggle">
+                                    <input type="radio" id="gender-male" name="gender-radio" value="male">
+                                    <label for="gender-male"><i class="fas fa-mars"></i> <span data-i18n="opt.male">مرد</span></label>
+
+                                    <input type="radio" id="gender-female" name="gender-radio" value="female">
+                                    <label for="gender-female"><i class="fas fa-venus"></i> <span data-i18n="opt.female">زن</span></label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="gender-error"></div>
+                        </div>
+                    </div>
+                    <div class="compact-help-text">
+                        <span data-i18n="help.pbw">برای محاسبه گرادیان A-a و وزن ایده‌آل (PBW)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="form-card">
+                <div class="card-header">
+                    <img src="images/ph.png" alt="پارامترها" class="card-icon">
+                    <span data-i18n="card.bloodgas">پارامترهای اصلی گاز خون</span>
+                </div>
+                <div class="card-body">
+                    <form id="abg-form" novalidate>
+
+                        <div class="form-row grid-desktop-3">
+                            <div class="form-group compact">
+                                <label for="ph" class="required-field">pH</label>
+                                <input type="number" id="ph" step="0.01" min="6.8" max="7.8" placeholder="7.40" inputmode="decimal">
+                                <div class="normal-range" data-i18n="range.ph">نرمال: 7.35 - 7.45</div>
+                                <div class="error-message" id="ph-error"></div>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="paco2" class="required-field">PaCO₂</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="paco2" step="0.1" min="10" max="130" placeholder="40" inputmode="decimal">
+                                    <span class="unit-badge">mmHg</span>
+                                </div>
+                                <div class="normal-range" id="paco2-range" data-i18n="range.paco2">نرمال: 35 - 45</div>
+                                <div class="error-message" id="paco2-error"></div>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="hco3" class="required-field">HCO₃⁻</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="hco3" step="0.1" min="5" max="50" placeholder="24" inputmode="decimal">
+                                    <span class="unit-badge">mmol/L</span>
+                                </div>
+                                <div class="normal-range" id="hco3-range" data-i18n="range.hco3">نرمال: 22 - 26</div>
+                                <div class="error-message" id="hco3-error"></div>
+                            </div>
+                        </div>
+                        <div class="form-row grid-desktop-3">
+                            <div class="form-group compact">
+                                <label for="pao2">PaO₂</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="pao2" step="1" min="20" max="600" placeholder="95" inputmode="decimal">
+                                    <span class="unit-badge">mmHg</span>
+                                </div>
+                                <div class="normal-range" id="pao2-range" data-i18n="range.pao2">نرمال: 80 - 100</div>
+                                <div class="error-message" id="pao2-error"></div>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="spo2">SpO₂</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="spo2" step="1" min="70" max="100" placeholder="98" inputmode="numeric">
+                                    <span class="unit-badge">%</span>
+                                </div>
+                                <div class="normal-range" data-i18n="lbl.spo2Normal">نرمال: 94% - 100%</div>
+                                <div class="error-message" id="spo2-error"></div>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="be">BE</label>
+                                <div class="input-with-unit has-sign-toggle">
+                                    <input type="text" id="be" step="0.1" min="-30" max="30" placeholder="0.0" inputmode="decimal">
+                                    <span class="unit-badge">mmol/L</span>
+                                    <button type="button" class="sign-toggle-btn" id="be-sign-toggle" aria-label="تغییر علامت مثبت/منفی">
+                                        <span class="sign-toggle-plus">+</span>
+                                        <span class="sign-toggle-minus">−</span>
+                                    </button>
+                                </div>
+                                <div class="normal-range" data-i18n="range.be">نرمال: -2 تا +2</div>
+                                <div class="error-message" id="be-error"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card premium-lockable" id="metabolic-calc-card">
+                <div class="premium-lock-overlay" data-premium-lock>
+                    <div class="premium-lock-overlay-content">
+                        <i class="fas fa-lock"></i>
+                        <span data-i18n="premium.lockedSection">ویژه نسخه حرفه‌ای</span>
+                        <small data-i18n="premium.lockedHint">برای باز شدن، نسخه حرفه‌ای را تهیه کنید</small>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <img src="images/cell.png" alt="متابولیک" class="card-icon">
+                    <span data-i18n="card.metabolic">آنالیز متابولیک (الکترولیت‌ها)</span>
+                </div>
+                <div class="card-body">
+                    <p class="constants-info" style="text-align: right; margin-bottom: 0.8rem;" data-i18n="metabolic.hint">پارامترهای زیر برای محاسبه آنیون گپ (AG) استفاده می‌شوند:</p>
+                    <div class="form-row grid-desktop-3">
+                        <div class="form-group compact">
+                            <label for="sodium">Na⁺</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="sodium" step="1" min="100" max="180" placeholder="140" inputmode="numeric" class="compact-field">
+                                <span class="unit-badge compact-badge">mmol/L</span>
+                            </div>
+                            <div class="normal-range" data-i18n="range.na">نرمال: 135 - 145</div>
+                            <div class="error-message" id="sodium-error"></div>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="chloride">Cl⁻</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="chloride" step="1" min="70" max="130" placeholder="100" inputmode="numeric" class="compact-field">
+                                <span class="unit-badge compact-badge">mmol/L</span>
+                            </div>
+                            <div class="normal-range" data-i18n="range.cl">نرمال: 95 - 105</div>
+                            <div class="error-message" id="chloride-error"></div>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="albumin" data-i18n="lbl.albumin">آلبومین</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="albumin" step="0.1" min="1.0" max="5.5" placeholder="4.0" inputmode="decimal" class="compact-field">
+                                <span class="unit-badge compact-badge">g/dL</span>
+                            </div>
+                            <div class="normal-range" data-i18n="range.albumin">نرمال: 3.5 - 5.0</div>
+                            <div class="error-message" id="albumin-error"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card premium-lockable" id="ventilator-card">
+                <div class="premium-lock-overlay" data-premium-lock>
+                    <div class="premium-lock-overlay-content">
+                        <i class="fas fa-lock"></i>
+                        <span data-i18n="premium.lockedSection">ویژه نسخه حرفه‌ای</span>
+                        <small data-i18n="premium.lockedHint">برای باز شدن، نسخه حرفه‌ای را تهیه کنید</small>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <img src="images/lungs.png" alt="ونتیلاتور" class="card-icon">
+                    <span data-i18n="card.ventilator">وضعیت دستگاه تنفس</span>
+                </div>
+                <div class="card-body">
+                    <div class="checkbox-group" id="ventilator-checkbox-group">
+                        <input type="checkbox" id="is-on-ventilator">
+                        <label for="is-on-ventilator" data-i18n="lbl.onVent">بیمار به [ونتیلاتور] متصل است</label>
+                    </div>
+
+                    <div id="ventilator-inputs" class="ventilator-section" style="display: none;">
+                        <p class="constants-info" style="text-align: right; margin-bottom: 0.8rem;" data-i18n="vent.enterParams">پارامترهای فعلی ونتیلاتور را وارد کنید:</p>
+
+                        <div class="form-row grid-desktop-1">
+                            <div class="form-group compact">
+                                <label class="required-field" data-i18n="lbl.ventMode">مود ونتیلاتور (Mode)</label>
+                                <div class="custom-select-container" id="vent-mode-container">
+                                    <input type="hidden" id="vent-mode" value="">
+                                    <div class="custom-select-trigger" id="vent-mode-trigger">
+                                        <span id="vent-mode-display" style="color: var(--text-secondary);" data-i18n="vent.selectMode">انتخاب کنید...</span>
+                                        <i class="fas fa-chevron-down select-arrow"></i>
+                                    </div>
+                                    <ul class="custom-select-options" id="vent-mode-options">
+                                        <li data-value="AC-VC">AC-VC (Volume Control)</li>
+                                        <li data-value="AC-PC">AC-PC (Pressure Control)</li>
+                                        <li data-value="SIMV">SIMV</li>
+                                        <li data-value="PSV">PSV (Pressure Support)</li>
+                                        <li data-value="CPAP">CPAP</li>
+                                    </ul>
+                                </div>
+                                <div class="error-message" id="vent-mode-error"></div>
+                            </div>
+                        </div>
+
+                        <div id="mode-specific-inputs">
+                            <div class="form-row grid-desktop-3 common-inputs" id="common-vent-inputs">
+                                <div class="form-group compact" id="rate-group">
+                                    <label for="rate" data-i18n="lbl.rate">نرخ (RR)</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="rate" step="1" min="1" max="50" placeholder="12" inputmode="numeric">
+                                        <span class="unit-badge">bpm</span>
+                                    </div>
+                                    <div class="error-message" id="rate-error"></div>
+                                </div>
+                                <div class="form-group compact">
+                                    <label for="peep">PEEP</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="peep" step="1" min="0" max="30" placeholder="5" inputmode="numeric">
+                                        <span class="unit-badge">cmH₂O</span>
+                                    </div>
+                                    <div class="error-message" id="peep-error"></div>
+                                </div>
+                                <div class="form-group compact">
+                                    <label for="vent-fio2" class="required-field">FiO₂</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="vent-fio2" step="1" min="21" max="100" placeholder="40" inputmode="numeric">
+                                        <span class="unit-badge">%</span>
+                                    </div>
+                                    <div class="normal-range" data-i18n="vent.forVentAa">برای ونتیلاتور و A-a</div>
+                                    <div class="error-message" id="vent-fio2-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row grid-desktop-2 volume-inputs mode-inputs" data-mode="AC-VC SIMV" style="display: none;">
+                                <div class="form-group compact">
+                                    <label for="tv" data-i18n="lbl.tv">حجم جاری (TV)</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="tv" step="1" min="100" max="1000" placeholder="450" inputmode="numeric">
+                                        <span class="unit-badge">mL</span>
+                                    </div>
+                                    <div class="error-message" id="tv-error"></div>
+                                </div>
+                                <div class="form-group compact">
+                                    <label for="pplat" data-i18n="lbl.pplat">فشار پلاتو (P.Plateau)</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="pplat" step="1" min="0" max="50" placeholder="20" inputmode="numeric">
+                                        <span class="unit-badge">cmH₂O</span>
+                                    </div>
+                                    <div class="error-message" id="pplat-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row grid-desktop-2 pressure-inputs mode-inputs" data-mode="AC-PC PSV" style="display: none;">
+                                <div class="form-group compact">
+                                    <label for="pressure-setting" id="pressure-setting-label">P.Insp / PS</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="pressure-setting" step="1" min="5" max="40" placeholder="15" inputmode="numeric">
+                                        <span class="unit-badge">cmH₂O</span>
+                                    </div>
+                                    <div class="error-range"></div>
+                                    <div class="error-message" id="pressure-setting-error"></div>
+                                </div>
+                                <div class="form-group compact">
+                                    <label for="measured-vt" data-i18n="lbl.measuredVt">حجم جاری اندازه‌گیری شده</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="measured-vt" step="1" min="100" max="1000" placeholder="400" inputmode="numeric">
+                                        <span class="unit-badge">mL</span>
+                                    </div>
+                                    <div class="normal-range" data-i18n="vent.pcPsvHint">برای PC/PSV، TV حاصل را وارد کنید.</div>
+                                    <div class="error-message" id="measured-vt-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row grid-desktop-1 cpap-inputs mode-inputs" data-mode="CPAP" style="display: none;">
+                                <p class="constants-info" style="text-align: right; margin-top: 0;" data-i18n="vent.cpapHint">در مود CPAP/PSV، Rate (نرخ تنفس) به طور عمده توسط بیمار کنترل می‌شود.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="aagradient-calc-card">
+                <div class="card-header">
+                    <img src="images/breathing.png" alt="ریه" class="card-icon">
+                    <span data-i18n="card.aagradient">محاسبات اکسیژن‌رسانی (A-a Gradient)</span>
+                </div>
+                <div class="card-body">
+                    <div id="aagradient-non-vent-section">
+                        <div class="checkbox-group" id="aagradient-checkbox-group">
+                            <input type="checkbox" id="calculate-aagradient">
+                            <label for="calculate-aagradient" data-i18n="lbl.calcAa">محاسبه اختلاف فشار آلوئولار-شریانی (A-a gradient)</label>
+                        </div>
+
+                        <div id="aagradient-inputs" style="display: none;">
+                            <p class="constants-info" style="text-align: right; margin-bottom: 0.8rem;">
+                                برای محاسبه A-a Gradient، پارامترهای زیر را وارد کنید:
+                            </p>
+
+                            <div class="form-row grid-desktop-2">
+                                <div class="form-group compact">
+                                    <label for="aagradient-fio2" class="required-field" data-i18n="aa.fio2Label">FiO₂ محاسبات A-a</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" id="aagradient-fio2" step="1" min="21" max="100" placeholder="21" inputmode="numeric" value="21">
+                                        <span class="unit-badge">%</span>
+                                    </div>
+                                    <div class="normal-range" data-i18n="aa.fio2Hint">معمولاً ۲۱% (هوای اتاق) تا ۱۰۰%</div>
+                                    <div class="error-message" id="aagradient-fio2-error"></div>
+                                </div>
+                                <div></div>
+                            </div>
+
+                            <p class="constants-info">
+                                مقادیر ثابت: Patm=760mmHg | PH₂O=47mmHg | R=0.8
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="aagradient-vent-section" style="display: none;">
+                        <p class="constants-info" style="text-align: center; color: var(--info-color);">
+                            <i class="fas fa-info-circle"></i>
+                            با فعال بودن ونتیلاتور، A-a Gradient به طور خودکار با استفاده از FiO₂ وارد شده در بخش ونتیلاتور محاسبه می‌شود.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="form-operations-card">
+                <div class="card-header">
+                    <img src="images/donut-chart.png" alt="عملیات" class="card-icon">
+                    <span data-i18n="card.operations">عملیات فرم</span>
+                </div>
+                <div class="card-body">
+                    <div class="button-group">
+                        <button type="reset" class="reset-btn" id="reset-btn" form="abg-form">
+                            <i class="fas fa-eraser"></i> <span data-i18n="btn.reset">پاک کردن فرم</span>
+                        </button>
+                        <button type="submit" class="submit-btn" id="submit-btn" form="abg-form">
+                            <i class="fas fa-check-circle"></i> <span data-i18n="btn.submit">تحلیل نتایج</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="right-column-sticky">
+            <div class="card" id="results-card">
+                <div class="card-header">
+                    <img src="images/research.png" alt="گزارش" class="card-icon">
+                    <span data-i18n="card.report">گزارش تحلیل</span>
+                </div>
+                <div class="card-body" id="interpretation-result">
+                    <div class="placeholder">
+                        <i class="fas fa-notes-medical"></i>
+                        <p data-i18n="result.placeholder">نتایج تحلیل بیمار در این قسمت نمایش داده خواهد شد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Premium Purchase Modal -->
+<div class="modal" id="purchaseModal" style="display: none;">
+    <div class="premium-modal-content">
+        <div class="premium-modal-header">
+            <div class="premium-icon-wrapper">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h3 data-i18n="premium.title2">ارتقا به نسخه حرفه‌ای</h3>
+        </div>
+        <div class="premium-modal-body">
+            <p data-i18n="premium.body">جهت دسترسی نامحدود به تحلیل نتایج تخصصی شریانی (ABG) و دستیار پیشرفته، نسخه کامل را فعال کنید.</p>
+            <ul class="premium-features">
+                <li><i class="fas fa-check-circle"></i> <span data-i18n="premium.f1">تحلیل نامحدود و دقیق گازهای خون</span></li>
+                <li><i class="fas fa-check-circle"></i> <span data-i18n="premium.f2">توصیه‌های هوشمند تنظیمات ونتیلاتور</span></li>
+                <li><i class="fas fa-check-circle"></i> <span data-i18n="premium.f3">آنالیز کامل متابولیک و اسید-باز</span></li>
+            </ul>
+            <div class="premium-vpn-warning">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span data-i18n="premium.vpnWarning">لطفاً پیش از خرید، فیلترشکن (VPN) خود را خاموش کنید.</span>
+            </div>
+        </div>
+        <div class="premium-modal-footer">
+            <button id="btn-do-purchase" class="premium-btn-primary" onclick="startPurchase()">
+                <i class="fas fa-unlock-alt"></i> <span data-i18n="premium.buy">خرید و فعال‌سازی</span>
+            </button>
+            <button id="btn-cancel-purchase" class="premium-btn-secondary" onclick="closeModal()" data-i18n="premium.cancel">انصراف</button>
+        </div>
+    </div>
+</div>
+
+<!-- برای APK/WebView: تک‌فایل باندل‌شده (بدون مشکل ترتیب/لود چند فایل جدا).
+     بازسازی پس از تغییر js/: node build/bundle.mjs -->
+<script src="dist/app.bundle.js"></script>
+</body>
+</html>
