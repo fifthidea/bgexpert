@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+	<link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon" />
+	<link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -51,6 +53,8 @@
                 <span data-i18n="menu.about">درباره ما</span>
             </a>
         </li>
+		<li><a href="https://fifthidea.github.io/pedicalc" target="_blank" rel="noopener" class="menu-link persian-text"><img src="images/pedicalc.png" class="sidenav-icon" alt="" onerror="this.style.display='none'"><span data-i18n="menu.pedicalc">محاسبه گر دوز داروهای کودکان</span></a></li>
+		<li><a href="https://fifthidea.github.io/medmate" target="_blank" rel="noopener" class="menu-link persian-text"><img src="images/medmate.png" class="sidenav-icon" alt="" onerror="this.style.display='none'"><span data-i18n="menu.medmate">ماشین حساب محاسبات دارویی</span></a></li>
     </ul>
 </aside>
 <div id="overlay" class="overlay"></div>
@@ -554,5 +558,12 @@
 <!-- برای APK/WebView: تک‌فایل باندل‌شده (بدون مشکل ترتیب/لود چند فایل جدا).
      بازسازی پس از تغییر js/: node build/bundle.mjs -->
 <script src="dist/app.bundle.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+</script>
 </body>
 </html>

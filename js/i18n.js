@@ -16,6 +16,9 @@
 
     // دیکشنری رشته‌های UI — کلید-محور (مثل PediCalc). fa و en هر دو موجودند.
     var STRINGS = {
+		'menu.medmate':		{ fa: 'ماشین حساب محاسبات دارویی', en: 'MedMate Drug Calculator' },
+		'menu.pedicalc':	{ fa: 'محاسبه گر دوز داروهای کودکان', en: 'Pediatric Calculator' },
+		
         'splash.title':    { fa: 'اپلیکیشن هوشمند تحلیل پیشرفته گازهای خون (ABG/VBG)', en: 'Smart Advanced Blood Gas Analysis (ABG/VBG)' },
         'splash.subtitle': { fa: 'لطفاً نوع نمونه خون را انتخاب کنید', en: 'Please select the blood sample type' },
         'sample.abg':      { fa: 'نمونه خون شریانی (ABG)', en: 'Arterial Blood Gas (ABG)' },
@@ -26,7 +29,6 @@
         'premium.lockedHint':    { fa: 'برای باز شدن، نسخه حرفه‌ای را تهیه کنید', en: 'Purchase the Pro version to unlock' },
 
         'menu.title':      { fa: 'منو', en: 'Menu' },
-        'menu.medmate':    { fa: 'دانلود اپلیکیشن محاسبات دارویی', en: 'Download drug-calculation app' },
         'menu.edu':        { fa: 'دانلود محصولات آموزشی', en: 'Download educational products' },
         'menu.video':      { fa: 'آموزش اورژانس و مراقبت‌های ویژه', en: 'Emergency & Critical Care training' },
         'menu.about':      { fa: 'درباره ما', en: 'About us' },

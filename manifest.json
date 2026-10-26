@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "BGExpert",
+  "short_name": "BGExpert",
+  "description": "BGExpert",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1565c0",
+  "icons": [
+    {
+      "src": "./icon256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
