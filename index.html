@@ -558,12 +558,5 @@
 <!-- برای APK/WebView: تک‌فایل باندل‌شده (بدون مشکل ترتیب/لود چند فایل جدا).
      بازسازی پس از تغییر js/: node build/bundle.mjs -->
 <script src="dist/app.bundle.js"></script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js");
-  });
-}
-</script>
 </body>
 </html>

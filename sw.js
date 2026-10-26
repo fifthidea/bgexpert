@@ -12,7 +12,6 @@ const FILES = [
   "./index.html",
   "./style.css",
   "./dist/app.bundle.js",
-  "./fonts/Vazir.ttf",
   "./images/favicon/favicon.ico",
   "./images/abg-icon.png",
   "./images/about.png",
@@ -20,7 +19,6 @@ const FILES = [
   "./images/breathing.png",
   "./images/cell.png",
   "./images/donut-chart.png",
-  "./images/edu.png",
   "./images/logo.png",
   "./images/lungs.png",
   "./images/medmate.png",
@@ -28,13 +26,10 @@ const FILES = [
   "./images/pedicalc.png",
   "./images/ph.png",
   "./images/research.png",
-  "./images/swap.png",
   "./images/user.png",
   "./images/vbg-icon.png",
-  "./images/video.png",
   "./manifest.json",
-  "./icon256.png",
-  "./package.json"
+  "./icon256.png"
 ];
 
 async function readActiveInfo() {
@@ -126,7 +121,7 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("message", event => {
-  if (!event.data || event.data.type !== "bgexpert_SET_ACTIVE_CACHE") return;
+  if (!event.data || event.data.type !== "BGEXPERT_SET_ACTIVE_CACHE") return;
 
   event.waitUntil((async () => {
     const cacheName = String(event.data.cacheName || "");
