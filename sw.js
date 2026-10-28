@@ -1,8 +1,8 @@
 // bgexpert PWA service worker.
 // IMPORTANT: for every published app update, change BOTH CACHE_NAME and APP_VERSION.
 const CACHE_PREFIX = "bgexpert-pwa-";
-const CACHE_NAME = "bgexpert-pwa-v1";
-const APP_VERSION = "1.0.1";
+const CACHE_NAME = "bgexpert-pwa-v2";
+const APP_VERSION = "1.0.2";
 const META_CACHE_NAME = "bgexpert-meta";
 const ACTIVE_INFO_URL = new URL("__bgexpert_active_cache_info__", self.registration.scope).href;
 const CACHE_READY_URL = new URL("__bgexpert_cache_ready__", self.registration.scope).href;
@@ -12,6 +12,15 @@ const FILES = [
   "./index.html",
   "./style.css",
   "./dist/app.bundle.js",
+  "./font-awesome/css/all.min.css",
+  "./font-awesome/webfonts/fa-brands-400.woff2",
+  "./font-awesome/webfonts/fa-regular-400.woff2",
+  "./font-awesome/webfonts/fa-solid-900.woff2",
+  "./font-awesome/webfonts/fa-v4compatibility.woff2",
+  "./vazirmatn/css/vazirmatn-font-face.css",
+  "./vazirmatn/webfonts/Dxxo8j6PP2D_kU2muijlE8WWMmk.woff2",
+  "./vazirmatn/webfonts/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2",
+  "./vazirmatn/webfonts/Dxxo8j6PP2D_kU2muijlHcWW.woff2",
   "./images/favicon/favicon.ico",
   "./images/abg-icon.png",
   "./images/about.png",

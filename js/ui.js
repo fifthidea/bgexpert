@@ -8,7 +8,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 // Keep this value synchronized with version.json and sw.js.
-const BGEXPERT_APP_VERSION = '1.0.1';
+const BGEXPERT_APP_VERSION = '1.0.2';
 const BGEXPERT_CACHE_PREFIX = 'bgexpert-pwa-';
 let bgexpertPwaRegistration = null;
 let bgexpertUpdateCheckRunning = false;
